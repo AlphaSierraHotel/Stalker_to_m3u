@@ -221,31 +221,33 @@ async function convertJsonToM3U(channels, profile, account_info, request) {
         ''
     ];
 
+    const origin = new URL(request.url).origin;
+
     let server_ip = profile.ip || 'Unknown';
     m3u.push(`#EXTINF:-1 tvg-name="IP" tvg-logo="https://img.icons8.com/?size=160&id=OWj5Eo00EaDP&format=png" group-title="Portal | Info",IP • ${server_ip}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     m3u.push('#EXTINF:-1 tvg-name="Telegram: @tg_aadi" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1024px-Telegram_logo.svg.png?20220101141644" group-title="Portal | Info",Telegram • @tg_aadi');
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     let user_ip = request.headers.get('CF-Connecting-IP') || 'Unknown';
     m3u.push(`#EXTINF:-1 tvg-name="User IP" tvg-logo="https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/ip-location-color-icon.svg" group-title="Portal | Info",User IP • ${user_ip}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     m3u.push(`#EXTINF:-1 tvg-name="Portal" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6f/IPTV.png?20180223064625" group-title="Portal | Info",Portal • ${config.host}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     const created = profile.created || 'Unknown';
     m3u.push(`#EXTINF:-1 tvg-name="Created" tvg-logo="https://cdn-icons-png.flaticon.com/128/1048/1048953.png" group-title="Portal | Info",Created • ${created}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     const end_date = account_info.end_date || 'Unknown';
     m3u.push(`#EXTINF:-1 tvg-name="Expire" tvg-logo="https://www.citypng.com/public/uploads/preview/hand-drawing-clipart-14-feb-calendar-icon-701751694973910ds70zl0u9u.png" group-title="Portal | Info",End date • ${end_date}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     const tariff_plan = account_info.tariff_plan || 'Unknown';
     m3u.push(`#EXTINF:-1 tvg-name="Tariff Plan" tvg-logo="https://img.lovepik.com/element/45004/5139.png_300.png" group-title="Portal | Info",Tariff Plan • ${tariff_plan}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
+    m3u.push(`${origin}/intro.m3u8`);
 
     let max_online = 'Unknown';
     if (profile.storages && Object.keys(profile.storages).length > 0) {
@@ -253,9 +255,7 @@ async function convertJsonToM3U(channels, profile, account_info, request) {
         max_online = first_storage.max_online || 'Unknown';
     }
     m3u.push(`#EXTINF:-1 tvg-name="Max Online" tvg-logo="https://thumbs.dreamstime.com/b/people-vector-icon-group-symbol-illustration-businessman-logo-multiple-users-silhouette-153484048.jpg?w=1600" group-title="Portal | Info",Max Connection • ${max_online}`);
-    m3u.push('https://tg-aadi.vercel.app/intro.m3u8');
-
-    const origin = new URL(request.url).origin;
+    m3u.push(`${origin}/intro.m3u8`);
 
     if (!channels.length) {
         logDebug('No channels found');
