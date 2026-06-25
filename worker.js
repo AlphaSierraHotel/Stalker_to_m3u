@@ -1,3 +1,5 @@
+import { env } from "cloudflare:workers";
+
 // Stalker-Portal To M3U Generator Script
 // Created by: @tg_aadi 
 // Telegram: https://t.me/tg_aadi
