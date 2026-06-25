@@ -10,9 +10,9 @@
 
 // ============ ⚙ CONFIGURATION ============
 const config = {
-    host: '', // Replace with your Stalker-Portal host (e.g., 'example.com')
-    mac_address: '', // Replace with your MAC address
-    serial_number: '', // Replace with your serial number
+    host: env.SP_HOST, // Replace with your Stalker-Portal host (e.g., 'example.com')
+    mac_address: env.SP_MAC, // Replace with your MAC address
+    serial_number: env.SP_SERIALNUM, // Replace with your serial number
     device_id: '', // Replace with your device_id
     device_id_2: '', // Replace with your device_id_2
     stb_type: 'MAG250', // Replace with Stalker-Portal Stb_type
